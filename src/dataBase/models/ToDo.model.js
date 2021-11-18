@@ -8,7 +8,14 @@ ToDo.init(
         id: {
             type: Sequelize.DataTypes.UUID,
             primaryKey: true,
-            defaultValue: Sequelize.DataTypes.UUIDV4
+            defaultValue: Sequelize.UUIDV4
+        },
+        user_id: {
+            type: Sequelize.DataTypes.UUID,
+            references: {
+                model: 'users',
+                key: 'id'
+            }
         },
         title: {
             type: Sequelize.STRING,
@@ -28,5 +35,6 @@ ToDo.init(
     },
     { sequelize: sequelize, underscored: true, modelName: 'todo' }
 );
+
 
 module.exports = ToDo

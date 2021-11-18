@@ -6,9 +6,9 @@ class User extends Sequelize.Model {}
 User.init(
     {
         id: {
-            type: Sequelize.DataTypes.UUID,
-            primaryKey: true,
-            defaultValue: Sequelize.DataTypes.UUIDV4
+            type: Sequelize.UUID,
+            defaultValue: Sequelize.UUIDV4,
+            primaryKey: true
         },
         login: {
             type: Sequelize.STRING,
@@ -21,15 +21,22 @@ User.init(
         },
         email: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         name: {
             type: Sequelize.STRING,
-            allowNull: false
         }
     },
     { sequelize: sequelize, underscored: true, modelName: 'user' }
 );
-// User.hasMany(ToDo, { foreignKey: 'userId' });
-// User.hasMany(Token, { foreignKey: 'userId' });
+const ToDo = require('./ToDo.model');
+const Token = require('./Token.model');
+
+User.hasMany(ToDo);
+ToDo.belongsTo(User);
+
+User.hasMany(Token);
+Token.belongsTo(User);
+
 module.exports = User

@@ -8,7 +8,14 @@ Token.init(
         id: {
             type: Sequelize.DataTypes.UUID,
             primaryKey: true,
-            defaultValue: Sequelize.DataTypes.UUIDV4 
+            defaultValue: Sequelize.UUIDV4 
+        },
+        user_id: {
+            type: Sequelize.DataTypes.UUID,
+            references: {
+                model: 'users',
+                key: 'id'
+            }
         },
         value: {
             type: Sequelize.STRING(192)

@@ -22,7 +22,8 @@ const initDB = async () => {
   }
 };
 
+
 module.exports = {
   sequelize,
-  initDB,
+  initDB
 };
