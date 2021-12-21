@@ -8,7 +8,6 @@ const sequelize = new Sequelize({
   database: 'TODO_DB',
   username: 'postgres',
   password: '298471',
-  models: [__dirname + '/models/*.model.*'],
 });
 
 const initDB = async () => {
